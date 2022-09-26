@@ -33,4 +33,16 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}    
-          enable-AzPSSession: true      
+          enable-AzPSSession: true
+
+      - name: Deploy Bicep Template
+        uses: Azure/arm-deploy@v1
+        with:
+          # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'managementgroup', 'subscription'
+          scope: resourcegroup
+          # Provide the name of a resource group, only required for resource Group deployments.
+          resourceGroupName: CloudSummit-08
+          # Specify the path or URL to the Azure Resource Manager template.
+          template: './storage-account.bicep'
+      # Supply deployment parameter values.
+          parameters: storageAccountPrefix=CloudSummit               
