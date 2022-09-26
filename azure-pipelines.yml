@@ -7,6 +7,7 @@ pool:
 
 steps:
 - task: AzureResourceManagerTemplateDeployment@3
+  name: 'deployStorageAccount'
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'CloudSummit'
