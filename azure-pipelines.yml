@@ -3,7 +3,7 @@ trigger:
 - main
 
 pool:
-  name: Agent-08
+  name: Default
 
 steps:
 - task: AzureResourceManagerTemplateDeployment@3
