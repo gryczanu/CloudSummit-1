@@ -10,23 +10,17 @@ pool:
   name: Default
 
 stages:
-  - stage: Dev
+  - stage: Build
     jobs:
-      - job: Dev
+      - job: Build
         steps:
-        - task: AzureResourceManagerTemplateDeployment@3
-          name: 'deployStorageAccountDev'
-          inputs:
-            deploymentScope: 'Resource Group'
-            azureResourceManagerConnection: 'CloudSummit'
-            subscriptionId: '71818d77-4e18-47c8-8c36-b7af11e60bde'
-            action: 'Create Or Update Resource Group'
-            resourceGroupName: '$(resourcegroupName)'
-            location: 'West Europe'
-            templateLocation: 'Linked artifact'
-            csmFile: './main.bicep'
-            overrideParameters: '-storageAccountPrefix "dev"'
-            deploymentMode: 'Incremental'
+          - task: AzureCLI@2
+            name: 'buildBicepfile'
+            inputs:
+              azureSubscription: 'AzureConnection'
+              scriptType: 'pscore'
+              scriptLocation: 'inlineScript'
+              inlineScript: 'az bicep build --file ''./main.bicep'''
 
   - stage: Test
     jobs:
