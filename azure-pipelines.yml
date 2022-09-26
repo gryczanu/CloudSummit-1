@@ -16,6 +16,6 @@ steps:
     resourceGroupName: 'CloudSummit-08'
     location: 'West Europe'
     templateLocation: 'Linked artifact'
-    csmFile: './.main.bicep'
+    csmFile: './main.bicep'
     overrideParameters: '-storageAccountPrefix "test"'
     deploymentMode: 'Incremental'
