@@ -21,5 +21,4 @@ steps:
     templateLocation: 'Linked artifact'
     csmFile: './storage-account.bicep'
     overrideParameters: '-storageAccountPrefix "cloudsummit"'
-    csmParametersFile: 'storageName: firstaccount'
     deploymentMode: 'Incremental'
