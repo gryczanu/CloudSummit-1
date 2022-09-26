@@ -9,17 +9,57 @@ variables:
 pool:
   name: Default
 
-steps:
-- task: AzureResourceManagerTemplateDeployment@3
-  name: 'deployStorageAccount'
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'CloudSummit'
-    subscriptionId: '71818d77-4e18-47c8-8c36-b7af11e60bde'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: '$(resourcegroupName)'
-    location: 'West Europe'
-    templateLocation: 'Linked artifact'
-    csmFile: './main.bicep'
-    overrideParameters: '-storageAccountPrefix "test"'
-    deploymentMode: 'Incremental'
+stages:
+  - stage: Dev
+    jobs:
+      - job: Dev
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          name: 'deployStorageAccountDev'
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: 'CloudSummit'
+            subscriptionId: '71818d77-4e18-47c8-8c36-b7af11e60bde'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(resourcegroupName)'
+            location: 'West Europe'
+            templateLocation: 'Linked artifact'
+            csmFile: './main.bicep'
+            overrideParameters: '-storageAccountPrefix "dev"'
+            deploymentMode: 'Incremental'
+
+  - stage: Test
+    jobs:
+      - job: Test
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          name: 'deployStorageAccountTest'
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: 'CloudSummit'
+            subscriptionId: '71818d77-4e18-47c8-8c36-b7af11e60bde'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(resourcegroupName)'
+            location: 'West Europe'
+            templateLocation: 'Linked artifact'
+            csmFile: './main.bicep'
+            overrideParameters: '-storageAccountPrefix "test"'
+            deploymentMode: 'Incremental'
+  - stage: Prod
+    jobs:
+      - job: Production
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          name: 'deployStorageAccountTest'
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: 'CloudSummit'
+            subscriptionId: '71818d77-4e18-47c8-8c36-b7af11e60bde'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(resourcegroupName)'
+            location: 'West Europe'
+            templateLocation: 'Linked artifact'
+            csmFile: './main.bicep'
+            overrideParameters: '-storageAccountPrefix "prod"'
+            deploymentMode: 'Incremental'            
+
