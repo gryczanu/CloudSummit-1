@@ -14,13 +14,16 @@ stages:
     jobs:
       - job: Build
         steps:
+
           - task: AzureCLI@2
-            name: 'buildBicepfile'
+            displayName: Azure CLI
             inputs:
               azureSubscription: 'CloudSummit'
-              scriptType: 'pscore'
-              scriptLocation: 'inlineScript'
-              inlineScript: 'az bicep build --file "main.bicep"'
+              scriptType: ps
+              scriptLocation: inlineScript
+              inlineScript: |
+                az --version
+                az bicep build --file "main.bicep"            
 
   - stage: Test
     jobs:
