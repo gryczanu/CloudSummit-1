@@ -2,6 +2,10 @@
 trigger:
 - main
 
+variables:
+- name: resourcegroupName
+  value: 'CloudSummit-08'
+
 pool:
   name: Default
 
@@ -13,7 +17,7 @@ steps:
     azureResourceManagerConnection: 'CloudSummit'
     subscriptionId: '71818d77-4e18-47c8-8c36-b7af11e60bde'
     action: 'Create Or Update Resource Group'
-    resourceGroupName: 'CloudSummit-08'
+    resourceGroupName: '$(resourcegroupName)'
     location: 'West Europe'
     templateLocation: 'Linked artifact'
     csmFile: './main.bicep'
