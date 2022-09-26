@@ -45,4 +45,4 @@ jobs:
           # Specify the path or URL to the Azure Resource Manager template.
           template: main.bicep
       # Supply deployment parameter values.
-          parameters: storageAccountPrefix=CloudSummit               
+          parameters: storageAccountPrefix=gryczanu               
