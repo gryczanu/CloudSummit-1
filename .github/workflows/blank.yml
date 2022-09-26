@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: ll
+        run: echo Hello, world!
 
       - name: Azure Login
         uses: azure/login@v1
