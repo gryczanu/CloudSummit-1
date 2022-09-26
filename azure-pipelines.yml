@@ -16,5 +16,5 @@ steps:
     location: 'West Europe'
     templateLocation: 'Linked artifact'
     csmFile: './storage-account.bicep'
-    overrideParameters: '-storageAccountPrefix "cloudsummit"'
+    overrideParameters: '-storageAccountPrefix "test"'
     deploymentMode: 'Incremental'
