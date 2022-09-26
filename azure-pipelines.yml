@@ -20,7 +20,7 @@ stages:
               azureSubscription: 'CloudSummit'
               scriptType: 'pscore'
               scriptLocation: 'inlineScript'
-              inlineScript: 'az bicep build --file "./main.bicep"'
+              inlineScript: 'az bicep build --file ".\main.bicep"'
 
   - stage: Test
     jobs:
